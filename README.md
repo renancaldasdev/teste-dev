@@ -3,11 +3,11 @@
 
 ### Instruções Gerais
 
-1. **Fork do Repositório:** Faça um fork do repositório que será disponibilizado para este teste.
+1. **Fork do Repositório:** Faça um fork deste repositório.
 2. **Tecnologias a serem utilizadas:**
    - **Backend:** Laravel 11
    - **Banco de Dados:** PostgreSQL
-   - **Ambiente:** Docker
+   - **Ambiente:** Livre (preferencialmente uso do Docker, mas não é obrigatório)
    - **Frontend:** Utilize um framework de sua preferência ou, se preferir, HTML5, JavaScript e CSS.
 
 ### Projeto: Cadastro de Contatos
@@ -41,4 +41,4 @@
 
 ### Entrega
 
-- Após concluir o projeto, envie o link do seu repositório para avaliação.
+- Tempo de execução: 5 dias corridos (o tempo será contabilizado a partir da criação do Fork).
