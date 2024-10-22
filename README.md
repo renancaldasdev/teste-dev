@@ -1,6 +1,7 @@
-# Teste Técnico - Processo Seletivo - Libre Soluções de Governo
+# Libre Soluções de Governo
+## Processo Seletivo - Desenvolvimento
 
-## Instruções Gerais
+### Instruções Gerais
 
 1. **Fork do Repositório:** Faça um fork do repositório que será disponibilizado para este teste.
 2. **Tecnologias a serem utilizadas:**
@@ -9,9 +10,9 @@
    - **Ambiente:** Docker
    - **Frontend:** Utilize um framework de sua preferência ou, se preferir, HTML5, JavaScript e CSS.
 
-## Projeto: Cadastro de Contatos
+### Projeto: Cadastro de Contatos
 
-### Requisitos do Projeto
+#### Requisitos do Projeto
 
 - **Página Principal:**
   - Exibir uma lista de contatos com os seguintes campos:
@@ -34,10 +35,10 @@
     - Idade
     - Endereço (cep, rua, número, complemento, cidade, estado)
 
-## Estilo e Design
+### Estilo e Design
 
 - O estilo do site (cores, fontes e disposição dos elementos) é livre. Sinta-se à vontade para usar sua criatividade e refletir sua visão de design.
 
-## Entrega
+### Entrega
 
 - Após concluir o projeto, envie o link do seu repositório para avaliação.
