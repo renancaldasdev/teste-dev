@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Users\Providers;
+
+use App\Users\Interfaces\UserRepositoryInterface;
+use App\Users\Repositories\UserRepository;
+use Illuminate\Support\ServiceProvider;
+
+class UserServiceProvider extends ServiceProvider
+{
+
+    public function register()
+    {
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+    }
+
+    public function boot()
+    {
+    }
+}
