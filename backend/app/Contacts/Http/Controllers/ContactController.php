@@ -22,11 +22,11 @@ class ContactController
      */
     public function index(Request $request): JsonResponse
     {
-        $contactsPerPage = $request->amount_per_page;
+        $contactsPerPage = $request->get('amount_per_page', 10);
         return Contact::getAllPaginatedAsJson($contactsPerPage);
 
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
