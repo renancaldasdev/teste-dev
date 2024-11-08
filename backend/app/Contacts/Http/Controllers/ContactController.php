@@ -3,12 +3,20 @@
 namespace App\Contacts\Http\Controllers;
 
 use App\Contacts\Http\Requests\ContactRequest;
+use App\Contacts\Interfaces\ContactsRepositoryInterface;
 use App\Contacts\Models\Contact;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ContactController
 {
+
+    public function __construct(
+        private ContactsRepositoryInterface $contactsRepository
+    )
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -18,58 +26,68 @@ class ContactController
         return Contact::getAllPaginatedAsJson($contactsPerPage);
 
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(ContactRequest $request): JsonResponse
     {
-        $validatedData = $request->validated();
-        $contact = Contact::create($validatedData);
+        try {
+            $dataContacts = $request->all();
 
-        return response()->json([
-            'message' => 'Contato criado com sucesso!',
-            'data' => $contact
-        ], 201);
+            $contact = new Contact($dataContacts);
+
+            $newContact = $this->contactsRepository->save($contact);
+
+            return response()->json([
+                'message' => 'Contato criado com sucesso!',
+                'data' => $newContact
+            ], 201);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 400);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): JsonResponse
     {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        try {
+            $contact = $this->contactsRepository->find($id);
+            return response()->json($contact, 200);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 400);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ContactRequest $request, string $id): JsonResponse
     {
-        //
+        try {
+            $updatedContact = $request->all();
+            $contactUpdated = $this->contactsRepository->update($id, $updatedContact);
+            return response()->json([
+                'message' => 'Contato criado com sucesso!',
+                'data' => $contactUpdated
+            ], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 400);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        try {
+            $this->contactsRepository->delete($id);
+            return response()->json(['message' => 'Contato removido com sucesso!'], 200);
+        } catch (\Exception $exception) {
+            return response()->json(['message' => $exception->getMessage()], 400);
+        }
     }
 }
