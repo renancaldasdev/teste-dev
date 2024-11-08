@@ -2,6 +2,9 @@
 
 namespace App\Contacts\Http\Controllers;
 
+use App\Contacts\Http\Requests\ContactRequest;
+use App\Contacts\Models\Contact;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ContactController
@@ -9,9 +12,11 @@ class ContactController
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request): JsonResponse
     {
-        //
+        $contactsPerPage = $request->amount_per_page;
+        return Contact::getAllPaginatedAsJson($contactsPerPage);
+
     }
 
     /**
@@ -25,9 +30,15 @@ class ContactController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request): JsonResponse
     {
-        //
+        $validatedData = $request->validated();
+        $contact = Contact::create($validatedData);
+
+        return response()->json([
+            'message' => 'Contato criado com sucesso!',
+            'data' => $contact
+        ], 201);
     }
 
     /**
@@ -35,7 +46,7 @@ class ContactController
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
