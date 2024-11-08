@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 class UserServiceProvider extends ServiceProvider
 {
 
-    public function register()
+    public function register(): void
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
